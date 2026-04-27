@@ -1734,3 +1734,43 @@ if (musicToggle && bgMusic) {
       });
     }
   });
+const beginButtonForMusic = document.getElementById("begin-btn");
+const backgroundMusic = document.getElementById("bg-music");
+const musicToggle = document.getElementById("music-toggle");
+
+let musicPlaying = false;
+
+function playBackgroundMusic() {
+  if (!backgroundMusic) return;
+
+  backgroundMusic.volume = 0.45;
+
+  backgroundMusic.play()
+    .then(() => {
+      musicPlaying = true;
+      if (musicToggle) musicToggle.textContent = "♫";
+    })
+    .catch(() => {
+      console.log("Music was blocked until user interacts.");
+    });
+}
+
+function toggleBackgroundMusic() {
+  if (!backgroundMusic) return;
+
+  if (backgroundMusic.paused) {
+    playBackgroundMusic();
+  } else {
+    backgroundMusic.pause();
+    musicPlaying = false;
+    if (musicToggle) musicToggle.textContent = "♪";
+  }
+}
+
+if (beginButtonForMusic) {
+  beginButtonForMusic.addEventListener("click", playBackgroundMusic);
+}
+
+if (musicToggle) {
+  musicToggle.addEventListener("click", toggleBackgroundMusic);
+}
