@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Z&D's Journal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <button class="music-toggle" id="music-toggle" type="button">♪</button>
+  <canvas id="three-canvas"></canvas>
+
+  <div class="intro-ui" id="intro-ui">
+    <p class="intro-ui__overline">— a small gift —</p>
+    <h1 class="intro-ui__title">Welcome Derya</h1>
+    <button class="intro-ui__button" id="begin-btn">Begin</button>
+  </div>
+
+  <div class="hud" id="hud" aria-hidden="false">
+    <h1 class="hud__title">For Derya</h1>
+    <p class="hud__hint" id="hover-label">— hover the magic, then choose —</p>
+
+    <div class="quick-actions" aria-label="Open sections">
+      <button data-open="journal">Our Journal</button>
+      <button data-open="scroll">My Apology Letter</button>
+      <button data-open="gift">Your Gift</button>
+      <button data-open="locket">A Locket to You</button>
+    </div>
+
+    <div class="magic-pull" id="magic-pull" aria-hidden="false">
+      <div class="magic-pull__cord" id="magic-cord">
+        <div class="magic-pull__bead"></div>
+        <div class="magic-pull__handle">✦</div>
+      </div>
+
+      <div class="magic-surprise" id="magic-surprise">
+        <div class="magic-surprise__glow"></div>
+        <div class="magic-surprise__card">
+          <p class="magic-surprise__overline">— a little prayer —</p>
+          <h2>To You And Your Family</h2>
+          <p>
+            Beyaz gül, senin ve aile üyelerinle gurur duyuyor ve bu 
+            dünyada attığın her adımın seni büyük başarılara ve hayatında
+            her zaman var olacak bereketlere götüreceğine inanıyor.
+          </p>
+          <div class="magic-surprise__moon">☾ ✦</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ JOURNAL OVERLAY ============ -->
+<div class="overlay" id="overlay-journal" aria-hidden="true">
+  <button class="overlay__close" data-close aria-label="Close">✕</button>
+
+  <div class="book book--spread" id="book">
+
+    <!-- SPREAD 1: PAGES 1-2 -->
+    <div class="memory-spread is-active">
+      <section class="memory-page-panel memory-page-panel--cover">
+        <div class="book__cover-inner">
+          <div class="book__cover-emblem">✦</div>
+          <h2 class="book__cover-title">Memory Lane</h2>
+          <p class="book__cover-sub">22 little pages through us</p>
+          <p class="book__cover-instruction">begin the memory →</p>
+        </div>
+        <span class="memory-page-count">page 1</span>
+      </section>
+
+      <section class="memory-page-panel memory-page-panel--story">
+        <p class="memory-page__number">Page II</p>
+        <h3 class="memory-page__title">Where It All Began</h3>
+        <p class="book__caption">— 29/8/25 —</p>
+        <div class="memory-media memory-media--single">
+          <img src="assets/memories/29:08:25.jpeg" alt="Memory photo 1">
+        </div>
+        <p class="book__caption">— the first step —</p>
+        <p class="book__text">
+          This is where our little walk down memory lane begins. Do you remember when your 
+          sister gave me your number so I could give you notes, while “HaLlA” every two 
+          seconds probably made you want to vomit
+          in your mouth? Yep, that was the Lebo in me trying to stay hidden, but somehow
+          it still came out, and somehow, you still found me attractive. You came into
+          my life when I least expected a love like yours. You made me feel warm during a
+          time when I felt so cold. Especially after burying my grandfather, you were
+          still so soft, patient, and gentle with me.
+        </p>
+        <span class="memory-page-count">page 2</span>
+      </section>
+    </div>
+
+    <!-- SPREAD 2: PAGES 3-4 -->
+    <div class="memory-spread">
+      <section class="memory-page-panel">
+        <p class="memory-page__number">Page III</p>
+        <h3 class="memory-page__title">The First Moments</h3>
+        <p class="book__caption">— 14/9/25 · 21/9/25 —</p>
+        <div class="memory-media memory-media--grid-4">
+          <img src="assets/memories/14:09:25.jpeg" alt="Memory photo 2">
+          <img src="assets/memories/14:09:25(2).jpeg" alt="Memory photo 3">
+          <img src="assets/memories/21:09:25.jpeg" alt="Memory photo 4">
+          <img src="assets/memories/21:09:25(2).jpeg" alt="Memory photo 5">
+        </div>
+        <span class="memory-page-count">page 3</span>
+      </section>
+
+      <section class="memory-page-panel">
+        <p class="memory-page__number">Page IV</p>
+        <h3 class="memory-page__title">The Little Things</h3>
+        <p class="book__caption">— what I should have held closer to me —</p>
+        <p class="book__text">
+          Little did i know these memories we we were making were something that was going to 
+          be engraved in my mind and at times i catch myself reliving these very memories captured in 
+          these photos. The sunset photo was what i always look up to while remembering you because 
+          you are the light that i wish i never intended to put out.
+        </p>
+        <span class="memory-page-count">page 4</span>
+      </section>
+    </div>
+
+    <!-- SPREAD 3: PAGES 5-6 -->
+    <div class="memory-spread">
+      <section class="memory-page-panel">
+        <p class="memory-page__number">Page V</p>
+        <h3 class="memory-page__title">A Moment Kept</h3>
+        <p class="book__caption">— 9/1/26 —</p>
+        <div class="memory-media memory-media--video">
+          <video src="assets/memories/9:1:26.MOV" controls playsinline></video>
+        </div>
+        <span class="memory-page-count">page 5</span>
+      </section>
+
+      <section class="memory-page-panel">
+        <p class="memory-page__number">Page VI</p>
+        <h3 class="memory-page__title">Your Heart</h3>
+        <p class="book__caption">— the lover girl you are —</p>
+        <p class="book__text">
+          You were always a lover girl to me. You loved so deeply, so openly, and so purely.
+          I could see it in the way you looked at me, like I was someone special, like being
+          around me was enough to make your eyes light up.
+          That is something I definitely took for granted. I didn’t realise the kind of
+          treasure I had standing right in front of me until I lost it. I didn’t understand
+          how rare it was to be loved by someone who looked at me with that much softness,
+          warmth, and genuine love.
+          Looking back now, wallah I hate that I didn’t protect that part of you. I hate that I made
+          someone with such a loving heart feel like she had to beg to be loved properly.
+          You gave me a kind of love that should have been cherished every single day, and
+          I’m sorry I didn’t see it clearly when I had it.
+        </p>
+        <span class="memory-page-count">page 6</span>
+      </section>
+    </div>
+
+    <!-- SPREAD 4: PAGES 7-8 -->
+    <div class="memory-spread">
+      <section class="memory-page-panel memory-page-panel--long-text">
+        <p class="memory-page__number">Page VII</p>
+        <h3 class="memory-page__title">The Photos I Keep</h3>
+        <p class="book__caption">— 23/9/25 · 24/10/25 · 21/11/25 · 12/11/25 —</p>
+        <div class="memory-media memory-media--grid-4">
+          <img src="assets/memories/21:11:25.jpeg" alt="Memory photo 6">
+          <img src="assets/memories/23:09:25.jpg" alt="Memory photo 7">
+          <img src="assets/memories/24:10:25.JPG" alt="Memory photo 8">
+          <img src="assets/memories/12:11:25.jpeg" alt="Memory photo 9">
+        </div>
+        <span class="memory-page-count">page 7</span>
+      </section>
+
+      <section class="memory-page-panel memory-page-panel--long-text">
+        <p class="memory-page__number">Page VIII</p>
+        <h3 class="memory-page__title">I See It Now</h3>
+        <p class="book__caption">— what I missed —</p>
+        <p class="book__text">
+          I see it now. I see how many chances I had to show you care, to show up properly,
+          to make you feel chosen, and to make you feel loved without you ever having to ask.
+          I see the moments where I could have held you closer, reassured you more, and made
+          you feel safe in my love, but instead I let you feel alone.
+          And even though it may be late, I want you to know that none of our memories were
+          small to me. I still carry them in my heart, the laughs, the little looks, the
+          conversations, the quiet moments, and even the things I didn’t appreciate properly
+          at the time. I remember them differently now, because I finally understand how much
+          love was sitting right in front of me.
+          I can’t go back and change the way I showed up before, but I can be honest about
+          what I see now: you were a blessing I should have cherished with both hands, and
+          I’m sorry it took losing you for me to truly understand that.
+         </p>
+        <span class="memory-page-count">page 8</span>
+      </section>
+    </div>
+
+    <!-- SPREAD 5: PAGES 9-10 -->
+    <div class="memory-spread">
+      <section class="memory-page-panel">
+        <p class="memory-page__number">Page IX</p>
+        <h3 class="memory-page__title">A Memory in Motion</h3>
+        <p class="book__caption">— 13/2/26 —</p>
+        <div class="memory-media memory-media--video">
+          <video src="assets/memories/13:2:26.MOV" controls playsinline></video>
+        </div>
+        <span class="memory-page-count">page 9</span>
+      </section>
+
+      <section class="memory-page-panel memory-page-panel--long-text">
+        <p class="memory-page__number">Page X</p>
+        <h3 class="memory-page__title">What I Took For Granted</h3>
+        <p class="book__caption">— I should have known better —</p>
+        <div class="book__text-scroll">
+          <p class="book__text">
+            I took for granted the way you loved. I took for granted how much you tried.
+            I took for granted the person who was only asking me to show up, to care properly,
+            and to make her feel chosen.
+          </p>
+      
+          <p class="book__text">
+            And now that I finally care in the way I should have from the beginning, I feel
+            the emptiness of not having you close. I miss you in ways I don’t even know how
+            to explain. I miss your presence, your voice, your softness, your warmth, and the
+            way you made everything feel lighter just by being there.
+          </p>
+      
+          <p class="book__text">
+            I feel alone now, and I know that loneliness is something I created by not holding
+            onto you properly when I had the chance. My heart still calls out to you, even in
+            the quiet moments. It still looks for you. It still remembers you. It still wishes
+            I had loved you with the same effort, care, and tenderness that you gave me.
+          </p>
+      
+          <p class="book__text">
+            I’m hurt, but I know I hurt you first. I miss you, but I know you missed me while
+            I was still there. That is what breaks me the most, realising that I made you feel
+            alone long before I ever had to feel this kind of loneliness myself.
+          </p>
+        </div>
+        <span class="memory-page-count">page 10</span>
+      </section>
+    </div>
+
+    <!-- SPREAD 6: PAGES 11-12 -->
+    <div class="memory-spread">
+      <section class="memory-page-panel">
+        <p class="memory-page__number">Page XI</p>
+        <h3 class="memory-page__title">Us</h3>
+        <p class="book__caption">— 30/10/25 —</p>
+        <div class="memory-media memory-media--single">
+          <img src="assets/memories/30:10:25.jpeg" alt="Memory photo 10">
+        </div>
+        <span class="memory-page-count">page 11</span>
+      </section>
+
+      <section class="memory-page-panel memory-page-panel--long-text">
+        <p class="memory-page__number">Page XII</p>
+        <h3 class="memory-page__title">The Weight Of How You Felt</h3>
+        <p class="book__caption">— I understand why you got tired —</p>
+        <div class="book__text-scroll">
+        <p class="book__text">
+          Ahhh My Derya, how I've hurt you. You didn’t give up out of nowhere. You got tired of hurting quietly, tired of hoping
+          I would finally understand, tired of asking for the same things, and tired of carrying
+          the emotional weight on your own.
+          I see now how much pain I caused you. While I was battling my own mind, I didn’t realise
+          that my distance, my silence, and my lack of effort were slowly suffocating you. I never
+          wanted to make you feel trapped, unloved, or alone, but unintentionally, that is exactly
+          what I was doing.
+          I’m so sorry for making you feel like loving me was heavy. I’m sorry for the nights you
+          had to sit with your hurt by yourself, wondering why I couldn’t just show up properly.
+          You deserved softness, safety, reassurance, and peace, not someone who made your heart
+          feel exhausted from trying.
+          I wish I had seen your pain sooner. I wish I had understood that you were not asking for
+          too much; you were asking to breathe inside a love that should have felt safe. I’m sorry
+          for hurting you in ways I didn’t fully understand at the time, but that I see clearly now.
+        </p>
+        </div>
+        <span class="memory-page-count">page 12</span>
+      </section>
+    </div>
+
+<!-- SPREAD 7: PAGES 13-14 -->
+<div class="memory-spread">
+  <section class="memory-page-panel memory-page-panel--media-page">
+    <p class="memory-page__number">Page XIII</p>
+
+    <h3 class="memory-page__title">The Beautiful Things</h3>
+    <p class="book__caption">— 30/9/25 · 30/10/25 · 31/10/25 · 1/1/26 —</p>
+
+    <div class="memory-media memory-media--grid-4">
+      <img src="assets/memories/30:09:25.jpeg" alt="Memory photo 11">
+      <img src="assets/memories/30:10:25(2).jpeg" alt="Memory photo 12">
+      <img src="assets/memories/31:10:25.jpeg" alt="Memory photo 13">
+      <img src="assets/memories/1:1:26.jpeg" alt="Memory photo 14">
+    </div>
+
+    <span class="memory-page-count">page 13</span>
+  </section>
+
+  <section class="memory-page-panel memory-page-panel--long-text">
+    <p class="memory-page__number">Page XIV</p>
+
+    <h3 class="memory-page__title">Your Warmth, You’re So Full Of It</h3>
+    <p class="book__caption">— something I should have cherished —</p>
+
+    <div class="book__text-scroll">
+      <p class="book__text">
+        My beautiful baby, your warmth was something rare. It was in the way you cared,
+        the way you softened around me, the way your heart loved with so much passion and
+        tenderness. Your heart, your fire, your loyalty, and your way of loving so
+        deeply were things I should have cherished every single day, not neglected.
+      </p>
+
+      <p class="book__text">
+        I should have made you feel protected in that love. I should have made you feel
+        appreciated, adored, and safe to keep being soft with me. Instead, I let you feel
+        like your warmth was going unnoticed, when really it was one of the most beautiful
+        things about you.
+      </p>
+
+      <p class="book__text">
+        I see now that being loved by you was a gift. The way you gave your heart, the way
+        you cared, and the way you brought light into my life deserved to be held gently.
+        I’m sorry I didn’t cherish my beautiful girl the way she deserved when I had the
+        chance.
+      </p>
+    </div>
+
+    <span class="memory-page-count">page 14</span>
+  </section>
+</div>
+
+<!-- SPREAD 8: PAGES 15-16 -->
+<div class="memory-spread">
+  <section class="memory-page-panel memory-page-panel--media-page">
+    <p class="memory-page__number">Page XV</p>
+    <h3 class="memory-page__title">Another Moment</h3>
+    <p class="book__caption">— moments and memories —</p>
+    <div class="memory-media memory-media--video">
+      <video src="assets/memories/24:12:25.mov" controls playsinline></video>
+    </div>
+
+    <span class="memory-page-count">page 15</span>
+  </section>
+
+  <section class="memory-page-panel memory-page-panel--long-text">
+    <p class="memory-page__number">Page XVI</p>
+    <h3 class="memory-page__title">What You Deserved</h3>
+    <p class="book__caption">— more than bare minimum —</p>
+
+    <div class="book__text-scroll">
+      <p class="book__text">
+        Watching all of these moments together hurts my heart in a way I can’t properly explain.
+        Every smile, every laugh, every little memory reminds me of what I had in front of me,
+        and how badly I mistreated and neglected it. You gave me softness, love, patience, and
+        pieces of yourself that I should have held with care.
+      </p>
+
+      <p class="book__text">
+        I’m sorry for neglecting the little girl in you, the soft part of you that only wanted
+        to feel loved, chosen, safe, protected, and understood. While I was battling my own mind,
+        I let my distance and my silence hurt you. But that was never an excuse. My struggles
+        were never a reason to make you feel alone, unwanted, or emotionally exhausted.
+      </p>
+
+      <p class="book__text">
+        I see now that I should have loved you more gently. I should have protected your heart,
+        reassured you without being asked, and made you feel like your love was safe with me.
+        Instead, I made you carry pain that you never deserved, and I’m deeply sorry for that.
+      </p>
+
+      <p class="book__text">
+        I cherish every moment now, every memory, every look, every laugh, every second where
+        your love was right there in front of me. Even if I didn’t appreciate it the way I should
+        have at the time, I carry it in my heart now. These memories are not just videos to me;
+        they are pieces of us, and they remind me of the love I should have protected with
+        everything I had.
+      </p>
+    </div>
+
+    <span class="memory-page-count">page 16</span>
+  </section>
+</div>
+
+<!-- SPREAD 9: PAGES 17-18 -->
+<div class="memory-spread">
+  <section class="memory-page-panel memory-page-panel--media-page">
+    <p class="memory-page__number">Page XVII</p>
+    <h3 class="memory-page__title">Pieces Of Us</h3>
+    <p class="book__caption">— 8/3/26 · 21/1/26 · 6/3/26 —</p>
+
+    <div class="memory-media memory-media--grid-4">
+      <img src="assets/memories/8:3:26.JPG" alt="Memory photo 15">
+      <img src="assets/memories/8:3:26(2).jpeg" alt="Memory photo 16">
+      <img src="assets/memories/21:1:26.jpeg" alt="Memory photo 17">
+      <img src="assets/memories/6:3:26.JPG" alt="Memory photo 18">
+    </div>
+
+    <span class="memory-page-count">page 17</span>
+  </section>
+
+  <section class="memory-page-panel memory-page-panel--long-text">
+    <p class="memory-page__number">Page XVIII</p>
+    <h3 class="memory-page__title">If I Could Walk Back</h3>
+    <p class="book__caption">— I would choose differently —</p>
+
+    <div class="book__text-scroll">
+      <p class="book__text">
+        Looking at these photos hurts in the most beautiful way.
+        I see us on our dates, hugging, kissing, smiling, and standing under sunsets
+        that felt so simple at the time, but now mean everything to me. Every photo reminds me of your smile,
+        the kind of smile that made everything feel warmer, softer, and safer. I think about when I was in Umrah,
+        all the way in Saudi, and even with the distance, the different time zones, and how tired you were,
+        you still made time to FaceTime me. You still wanted to hear my voice. You still loved me enough to stay connected to me,
+        even when it would have been easier for you to sleep. I took that for granted, and I’m deeply sorry. I didn’t understand how special
+        it was to have someone choose me with that much love and effort. I didn’t realise that those calls, those smiles, those small moments,
+        and those photos were proof of a heart that was showing up for me in ways I should have cherished. If I could walk back through these pages,
+        I would stop at every moment where you needed me and I barely showed up. I would choose differently. I would hold those moments closer,
+        answer your love with care, and never make you feel like you were loving alone. Now when I look back at these memories, I feel hurt because
+        I see what I had, and I see how careless I was with it. I’m sorry for not appreciating your effort, your love, and your softness when you were
+        giving it to me so freely. I carry these moments in my heart, and I wish I had protected them, and you, the way you deserved.
+      </p>
+    </div>
+
+    <span class="memory-page-count">page 18</span>
+  </section>
+</div>
+
+<!-- SPREAD 10: PAGES 19-20 -->
+<div class="memory-spread">
+  <section class="memory-page-panel memory-page-panel--heart-page">
+    <p class="memory-page__number">Page XIX</p>
+    <h3 class="memory-page__title">One More Memory</h3>
+    <p class="book__caption">— My Princess —</p>
+
+    <div class="heart-memory-frame">
+      <svg class="heart-memory-svg" viewBox="0 0 512 512" aria-label="Heart memory photo">
+        <defs>
+          <pattern
+            id="page19HeartPhoto"
+            patternUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="512"
+            height="512"
+          >
+            <image
+              href="assets/memories/19:3:26.jpeg"
+              x="25"
+              y="45"
+              width="462"
+              height="422"
+              preserveAspectRatio="xMidYMid slice"
+            />
+          </pattern>
+        </defs>
+    
+        <path
+          class="heart-memory-fill"
+          d="M256 462
+             C249 454 42 275 42 150
+             C42 76 96 35 154 35
+             C202 35 238 65 256 112
+             C274 65 310 35 358 35
+             C416 35 470 76 470 150
+             C470 275 263 454 256 462Z"
+        />
+    
+        <path
+          class="heart-memory-border"
+          d="M256 462
+             C249 454 42 275 42 150
+             C42 76 96 35 154 35
+             C202 35 238 65 256 112
+             C274 65 310 35 358 35
+             C416 35 470 76 470 150
+             C470 275 263 454 256 462Z"
+        />
+      </svg>
+    </div>
+
+    <span class="memory-page-count">page 19</span>
+  </section>
+
+  <section class="memory-page-panel memory-page-panel--long-text">
+    <p class="memory-page__number">Page XX</p>
+    <h3 class="memory-page__title">My Apology</h3>
+    <p class="book__caption">— no excuses —</p>
+  
+    <div class="book__text-scroll">
+      <p class="book__text">
+        I’m sorry for not becoming the man you needed when I had the chance.
+        I’m sorry for making love feel tiring when it should have felt safe.
+        There are no excuses for my behaviour, no way to dress it up, and no way
+        to pretend that my struggles made it okay for me to neglect you. You deserved
+        love that felt calm, consistent, safe, and certain, and I’m sorry that I made
+        something so beautiful feel heavy in your heart.
+      </p>
+  
+      <p class="book__text">
+        I know I cannot undo the moments where I failed to show up, and I know words
+        cannot erase the hurt I caused. But I need you to know that I take responsibility
+        for it. I should have listened sooner. I should have cared louder. I should have
+        protected your softness instead of letting you feel alone inside a love that was
+        meant to hold you.
+      </p>
+  
+      <p class="book__text">
+        And even with all the regret I carry, the love I have for you will always remain.
+        It does not disappear because things became painful. It does not fade because time
+        moves forward. It stays with me in every memory, every quiet moment, every place
+        my heart still looks for you. I’m sorry I did not love you the way you deserved
+        when I had the chance, but please know this: what I felt for you was real, and the
+        love I have for you will always have a place in me.
+      </p>
+    </div>
+  
+    <span class="memory-page-count">page 20</span>
+  </section>
+</div>
+
+    <!-- SPREAD 11: PAGES 21-22 -->
+    <div class="memory-spread">
+      <section class="memory-page-panel">
+        <p class="memory-page__number">Page XXI</p>
+        <h3 class="memory-page__title">Thank You</h3>
+        <p class="book__caption">— for every memory —</p>
+        <p class="book__text">
+          Thank you for the memories, the love, the patience, the warmth,
+          and the version of you that tried so hard.
+        </p>
+        <span class="memory-page-count">page 21</span>
+      </section>
+
+      <section class="memory-page-panel memory-page-panel--final">
+        <div class="book__cover-emblem">✦</div>
+        <h3 class="memory-page__title">Always</h3>
+        <p class="book__caption">— from Z —</p>
+        <p class="book__text">
+          Even if these words are late, the memories still mean something to me.
+          And so do you.
+        </p>
+        <p class="book__text">
+          P.S. If you genuinely have moved on i shall respect your decision and
+          and will leave you be. As long as you know you mean a great deal to me. Before you say 
+          Uhhhhuuhhhhhh you do, you really do. This week and abit has been hell for me and i can only imagine 
+          what its been like for you. As I've said throughout this journal how there is no excuses for my shit
+          i just want to make sure you know that you mean alot to me. 
+        </p>
+        <span class="memory-page-count">page 22</span>
+      </section>
+    </div>
+
+  </div>
+
+  <div class="book-controls book-controls--spread">
+    <button class="book-btn" id="book-prev">‹ previous memory</button>
+    <button class="book-btn" id="book-next">next memory ›</button>
+  </div>
+</div>
+
+  <!-- ============ SCROLL OVERLAY ============ -->
+  <div class="overlay" id="overlay-scroll" aria-hidden="true">
+    <button class="overlay__close" data-close aria-label="Close">✕</button>
+    <div class="scroll-open" id="scroll-open">
+      <div class="scroll-open__rod scroll-open__rod--top"></div>
+      <div class="scroll-open__paper">
+        <div class="scroll-open__inner">
+          <div class="scroll-open__seal">✦</div>
+          <h2 class="scroll-open__title">My askim,</h2>
+          <p class="scroll-open__body">
+            I wrote this for you because ordinary words felt too small.
+          </p>
+          <p class="scroll-open__body">
+            I’ve been thinking about everything, and I need to say this properly.
+
+I’m sorry.
+
+I’m sorry for not showing up for you the way you always asked me to. You didn’t ask for the world. You asked for effort, presence, care, reassurance, and love that felt real. You asked me to be there, and too many times, I barely was.
+
+I know now that I made you feel like you were asking for too much, when really, you were only asking the person you loved to act like he loved you back.
+
+You are a lover girl. You love deeply, beautifully, and with your whole heart. You notice the little things. You care with softness. You give people warmth, patience, and loyalty. And instead of protecting that side of you, I made you feel like you had to beg for the bare minimum. I’m sorry for that.
+
+I’m sorry for making you feel unseen. I’m sorry for making you feel like your love was being wasted on someone who didn’t know how to hold it properly. I’m sorry for the nights you probably sat there wondering why I couldn’t just show up, why I couldn’t just care properly, why I couldn’t just make you feel chosen without you having to ask again and again.
+
+The truth is, you didn’t give up for no reason. You gave up because you got tired. You got tired of hoping I would change. You got tired of carrying the emotional weight. You got tired of loving someone who kept making you feel alone.
+
+And I understand that now.
+
+You deserved a love that felt safe. You deserved consistency. You deserved someone who made you feel adored, respected, and protected. You deserved someone who made you feel like the special woman you are, not someone who made you question your worth.
+
+I don’t want to make excuses. I don’t want to pressure you. I don’t want to make this about me being scared now that you’ve finally reached your limit. I just want to take responsibility.
+
+I failed you. I failed to show up. I failed to care in the ways that mattered. I failed to love you out loud.
+
+And I’m sorry.
+
+You should never have had to beg me to be present. You should never have had to explain over and over how to love you. You should never have had to feel like you were too much, when really, you were just giving your heart to someone who wasn’t showing up with both hands.
+
+I know words may feel late now. I know you needed actions long before this apology. I know I can’t undo the hurt I caused. But I need you to know that I finally see it. I see how much you tried. I see how much you loved. I see how much I took for granted.
+
+You not being Lebo, your heart, your warmth, your passion, your way of loving so deeply — those are things I should have cherished, not neglected. I should have made you feel proud to love me, not exhausted from trying.
+
+I’m sorry for making you reach the point where giving up felt easier than staying.
+
+Whether or not you can forgive me, I want you to know that I’m truly sorry. Not because I’m losing you, but because I hurt someone who only ever wanted to be loved properly.
+
+You deserved better from me.
+
+And I’m sorry I didn’t become that man when I had the chance.
+
+          </p>
+          <p class="scroll-open__body">
+            There are some people who change the colour of your days simply by existing in them. That's you.
+          </p>
+          <p class="scroll-open__signoff">Yours, always —</p>
+          <p class="scroll-open__signature">Z</p>
+        </div>
+      </div>
+      <div class="scroll-open__rod scroll-open__rod--bottom"></div>
+    </div>
+  </div>
+
+  <!-- ============ GIFT OVERLAY ============ -->
+  <div class="overlay" id="overlay-gift" aria-hidden="true">
+    <button class="overlay__close" data-close aria-label="Close">✕</button>
+    <div class="gift-stage">
+      <div class="gift-burst" aria-hidden="true"></div>
+      <div class="gift-3d" id="gift-3d">
+        <div class="gift-3d__base"></div>
+        <div class="gift-3d__lid">
+          <div class="gift-3d__ribbon-h"></div>
+          <div class="gift-3d__ribbon-v"></div>
+          <div class="gift-3d__bow"></div>
+        </div>
+      </div>
+
+      <div class="tickets" id="tickets">
+        <div class="ticket">
+          <div class="ticket__stub">
+            <div class="ticket__stub-text">YOUR<br/>MAN</div>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__brand">— a journey for two —</div>
+            <h3 class="ticket__title">[ Parramatta Event Cinemas ]</h3>
+            <div class="ticket__meta">
+              <div><span>date</span><strong>[ 28/04/26 ]</strong></div>
+              <div><span>time</span><strong>[ 1030hrs ]</strong></div>
+            </div>
+            <div class="ticket__barcode"></div>
+          </div>
+        </div>
+
+        <div class="ticket ticket--alt">
+          <div class="ticket__stub">
+            <div class="ticket__stub-text">MY<br/>BABY</div>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__brand">— and right back  —</div>
+            <h3 class="ticket__title">[ Parramatta Event Cinemas ]</h3>
+            <div class="ticket__meta">
+              <div><span>date</span><strong>[ 28/04/26 ]</strong></div>
+              <div><span>time</span><strong>[ 1030hrs ]</strong></div>
+            </div>
+            <div class="ticket__barcode"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="gift-hint" id="gift-hint">click the box to unwrap</p>
+    </div>
+  </div>
+
+<!-- ============ LOCKET OVERLAY ============ -->
+<div class="overlay" id="overlay-locket" aria-hidden="true">
+  <button class="overlay__close" data-close aria-label="Close">✕</button>
+  <div class="locket-stage">
+    <div class="locket-big" id="locket-big">
+      <div class="locket-big__chain"></div>
+      <div class="locket-big__crescent">☾ ✦</div>
+
+      <div class="locket-big__pendant">
+
+        <!-- OPEN VIEW (sits underneath) -->
+        <div class="locket-big__open">
+          <div class="locket-big__open-half locket-big__open-half--left">
+            <div class="locket-big__decoration">
+              <div class="locket-big__sigil">✦ ❁ ✦</div>
+              <div class="locket-big__big-nazar"></div>
+              <div class="locket-big__stem"></div>
+              <div class="locket-big__tulips">
+                <div class="locket-big__big-tulip"></div>
+                <div class="locket-big__big-tulip"></div>
+                <div class="locket-big__big-tulip"></div>
+              </div>
+            </div>
+          </div>
+          <div class="locket-big__open-half locket-big__open-half--right">
+            <div class="locket-big__verse">
+              <div class="locket-big__ornament">❀ ❀ ❀</div>
+              <p class="locket-big__words">Seni<br/>seviyorum</p>
+              <div class="locket-big__ornament">❀ ❀ ❀</div>
+              <p class="locket-big__translation">— I love you —</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLOSED VIEW (sits on top) -->
+        <div class="locket-big__closed">
+          <div class="locket-door locket-door--left"></div>
+          <div class="locket-door locket-door--right"></div>
+          <div class="locket-big__closed-nazar"></div>
+        </div>
+
+      </div>
+    </div>
+    <p class="locket-hint" id="locket-hint">click to open</p>
+  </div>
+</div>
+
+  
+  <audio id="bg-music" src="assets/audio/background.mp3" loop preload="auto"></audio> 
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
